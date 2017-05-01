@@ -1,0 +1,26 @@
+<html>
+<head>
+	<script type="text/javascript" charset="utf-8" async defer>
+		pdffile = "file:///Users/marc/Desktop/CMP3103M%20revision/CMP3103M%20revision.pdf";
+		lastpage = 529;
+		//AI pdffile = "file:///Users/marc/Desktop/CMP2020M%20revision/CMP2020M%20revision.pdf";
+		//AI lastpage = 430;
+
+		function randompage() {
+			var p = Math.floor((Math.random() * lastpage) + 1);
+			var frame = document.getElementById('iframe');
+			console.log(frame);
+			frame.setAttribute('src', pdffile + "?r="+p+"#page=" + p + "&view=fitH&toolbar=0");
+	  }
+
+	</script>
+
+
+</head>
+<body onload="randompage();">
+  <button style="width:100%;font-size: 18pt;" onclick="randompage();">Randomise</button>
+  <p/>
+	<iframe id="iframe" src="" width="1024" height="768">
+	</iframe>
+</body>
+</html>

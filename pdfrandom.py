@@ -20,10 +20,16 @@ print 'Reordering pages according to sequence:'
 print pages
 
 # add the new sequence of pages to output pdf
-for page in pages:
-    output.addPage(input1.getPage(page))
+if len(pages) > 0:
+    output.addPage(input1.getPage(pages[0]))
 
 # write the output pdf to file
-outputStream = file(sys.argv[1]+'-mixed.pdf','wb')
+
+[fh, tmpfile] = mkstemp(suffix='.pdf')
+
+outputStream = file(tmpfile, 'wb')
 output.write(outputStream)
 outputStream.close()
+
+system('/usr/bin/open -a Preview ' + tmpfile)
+#system('open ' + tmpfile)

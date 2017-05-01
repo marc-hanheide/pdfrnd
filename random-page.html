@@ -9,8 +9,10 @@
 		function randompage() {
 			var p = Math.floor((Math.random() * lastpage) + 1);
 			var frame = document.getElementById('iframe');
-			console.log(frame);
-			frame.setAttribute('src', pdffile + "?r="+p+"#page=" + p + "&view=fitH&toolbar=0");
+			var btn = document.getElementById('randomise');
+			btn.textContent = 'Random page (current page: ' + p + ' / ' + lastpage + ')';
+			frame.setAttribute('src', pdffile + "?r="+p+"#page=" + p + "&view=fit&toolbar=0");
+			
 	  }
 
 	</script>
@@ -18,7 +20,7 @@
 
 </head>
 <body onload="randompage();">
-  <button style="width:100%;font-size: 18pt;" onclick="randompage();">Randomise</button>
+  <button id="randomise" style="width:100%;font-size: 18pt;" onclick="randompage();">Loading...</button>
   <p/>
 	<iframe id="iframe" src="" width="1024" height="768">
 	</iframe>

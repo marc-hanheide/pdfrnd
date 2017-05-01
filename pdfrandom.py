@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-from os import system
+from os import system, remove
 from tempfile import mkstemp
 import random
 
@@ -26,10 +26,12 @@ if len(pages) > 0:
 # write the output pdf to file
 
 [fh, tmpfile] = mkstemp(suffix='.pdf')
+print tmpfile
 
 outputStream = file(tmpfile, 'wb')
 output.write(outputStream)
 outputStream.close()
 
 system('/usr/bin/open -a Preview ' + tmpfile)
+#remove(tmpfile)
 #system('open ' + tmpfile)

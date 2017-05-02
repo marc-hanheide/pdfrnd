@@ -6,6 +6,20 @@
 		//AI pdffile = "file:///Users/marc/Desktop/CMP2020M%20revision/CMP2020M%20revision.pdf";
 		//AI lastpage = 430;
 
+		function init() {
+			document.getElementById('randomise').addEventListener('keypress', handleKeyPress);
+			document.addEventListener('keydown', handleKeyPress);
+			randompage();
+		}
+    function handleKeyPress(e) {
+    	console.log(e);
+    	if (e.code == "Period") {
+    		randompage();
+    		e.preventDefault();
+      }
+
+		}
+
 		function randompage() {
 			var p = Math.floor((Math.random() * lastpage) + 1);
 			var frame = document.getElementById('iframe');
@@ -19,7 +33,7 @@
 
 
 </head>
-<body onload="randompage();">
+<body onload="init();">
   <button id="randomise" style="width:100%;font-size: 18pt;" onclick="randompage();">Loading...</button>
   <p/>
 	<iframe id="iframe" src="" width="1024" height="768">

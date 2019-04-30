@@ -1,22 +1,42 @@
 <html>
 <head>
 	<script type="text/javascript" charset="utf-8" async defer>
-		pdffile = "file:///Users/marc/Desktop/CMP3103M%20revision/CMP3103M%20revision.pdf";
-		lastpage = 529;
+
+		pdffile = "file:///Users/mhanheide/display.pdf";
+		lastpage = 74;
 		//AI pdffile = "file:///Users/marc/Desktop/CMP2020M%20revision/CMP2020M%20revision.pdf";
 		//AI lastpage = 430;
+		function getUrlVars()
+		{
+		    var vars = {}
+		    var hash;
+		    var hashes = window.location.href.slice(window.location.href.indexOf('#') + 1).split('&');
+		    for(var i = 0; i < hashes.length; i++)
+		    {
+		        hash = hashes[i].split('=');
+		        //vars.push(hash[0]);
+		        vars[hash[0]] = hash[1];
+		    }
+		    return vars;
+		}
 
 		function init() {
+			var vars = getUrlVars();
+			if (vars['pdf'] != null)
+				pdffile = vars['pdf'];
+			if (vars['pages'] != null)
+				lastpage = parseInt(vars['pages']);
 			document.getElementById('randomise').addEventListener('keypress', handleKeyPress);
 			document.addEventListener('keydown', handleKeyPress);
+
 			randompage();
 		}
-    function handleKeyPress(e) {
-    	console.log(e);
-    	if (e.code == "Period") {
-    		randompage();
-    		e.preventDefault();
-      }
+	    function handleKeyPress(e) {
+	    	console.log(e);
+	    	if (e.code == "Period") {
+	    		randompage();
+	    		e.preventDefault();
+	    	}
 
 		}
 
@@ -27,7 +47,7 @@
 			btn.textContent = 'Random page (current page: ' + p + ' / ' + lastpage + ')';
 			frame.setAttribute('src', pdffile + "?r="+p+"#page=" + p + "&view=fit&toolbar=0");
 			
-	  }
+	  	}
 
 	</script>
 

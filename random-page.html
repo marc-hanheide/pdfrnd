@@ -1,9 +1,13 @@
 <html>
 <head>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="pdf.js"></script>
+	<script src="pdf.worker.js"></script>
 	<script type="text/javascript" charset="utf-8" async defer>
 
 		pdffile = "display.pdf";
-		lastpage = 74;
+		lastpage = 1;
 		//AI pdffile = "file:///Users/marc/Desktop/CMP2020M%20revision/CMP2020M%20revision.pdf";
 		//AI lastpage = 430;
 		function getUrlVars()
@@ -28,8 +32,12 @@
 				lastpage = parseInt(vars['pages']);
 			document.getElementById('randomise').addEventListener('keypress', handleKeyPress);
 			document.addEventListener('keydown', handleKeyPress);
-
-			randompage();
+			PDFJS.getDocument({ url: pdffile }).then(function(pdf_doc) {
+    			// pdf_doc is a PDFDocumentProxy object
+    			console.log(pdf_doc.numPages);
+    			lastpage=pdf_doc.numPages;
+				randompage();
+			});
 		}
 	    function handleKeyPress(e) {
 	    	console.log(e);
